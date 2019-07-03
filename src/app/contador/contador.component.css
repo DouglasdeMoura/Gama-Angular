@@ -1,0 +1,10 @@
+.custom {
+    color: white;
+    font: bold;
+    text-transform: uppercase;
+}
+
+.custom::before {
+    content: '🖙';
+    font-weight: bold;
+}
