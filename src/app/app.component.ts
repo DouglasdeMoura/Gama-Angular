@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { TodoService } from './todo.service';
+import { map, debounceTime } from 'rxjs/operators';
+// Pesquise 'rxjs operators'
 
 @Component({
   selector: 'app-root',
@@ -6,13 +9,20 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  title = 'Douglas';
-  items = ['2', '3', '5', '8', '9'];
+  
+  contador = 0;
+
+  constructor(public todoService: TodoService) {  }
 
   ngOnInit() {
-    setTimeout(() => {
-      this.title += ' Moura';
-    }, 2000);
+    this.todoService.contador
+      .pipe(
+        map(x => x * 2),
+        debounceTime(2000)
+      )
+      .subscribe(value => {
+        this.contador = value;
+      });
   }
 
   novoItem() {

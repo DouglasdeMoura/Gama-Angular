@@ -1,19 +1,11 @@
-<section>
-    <h1>Olá {{ title }}</h1>
-    <p *ngIf="title === 'Douglas Moura'">Sobrenome: Moura</p>
-</section>
+<app-contador></app-contador>
 
-<section>
-    <app-contador></app-contador>
-</section>
+<strong>App: {{ contador }}</strong>
 
-<section>
-    
-<button (click)="novoItem()" [ngClass]="'btn btn-primary'">Adicionar item à lista</button>
+<app-contador-botoes></app-contador-botoes>
 
-<ul>
-    <li *ngFor="let item of items">
-        {{ item }}
-    </li>
-</ul>
-</section>
+<div>
+    <a routerLink="/">Home</a> | <a routerLink="/todos">Todos</a> | <a routerLink="/cep/04812227">CEP</a>
+</div>
+
+<router-outlet></router-outlet>
