@@ -25,9 +25,4 @@ export class AppComponent implements OnInit {
       });
   }
 
-  novoItem() {
-    const text = prompt('Digite um nome');
-    this.items.push(text);
-  }
-
 }
