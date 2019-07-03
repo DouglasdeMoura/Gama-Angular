@@ -1,4 +1,4 @@
 <p>{{ contador }}</p>
 
-<button (click)="todoService.aumentar()">+</button>
-<button (click)="todoService.diminuir()">-</button>
+<button (click)="todoService.aumentar()" [ngClass]="'btn btn-primary'">+</button>
+<button (click)="todoService.diminuir()" [ngClass]="'btn btn-secondary'">-</button>
