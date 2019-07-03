@@ -17,7 +17,7 @@ export class CepComponent implements OnInit {
     this.activatedRoute.params.subscribe(params => {
       this.cepService.getCep(params.numero).subscribe(value => {
         this.cep = value;
-      })
+      });
     });
   }
 
