@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { TodoService } from './todo/todo.service';
 import { map, debounceTime } from 'rxjs/operators';
 import { AuthService } from './auth/auth.service';
+import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
 // Pesquise 'rxjs operators'
 
 @Component({
@@ -15,11 +17,14 @@ export class AppComponent implements OnInit {
 
   email = '';
 
-  constructor(public todoService: TodoService, private authService: AuthService) {  }
+  user$: Observable<any>;
+
+  constructor(public todoService: TodoService, private authService: AuthService, private router: Router) {  }
 
   logout() {
     localStorage.removeItem('token');
     this.authService.setUser(null);
+    this.router.navigateByUrl('/auth/login')
   }
 
   ngOnInit() {
@@ -28,18 +33,13 @@ export class AppComponent implements OnInit {
     if(token) {
       this.authService.verifyToken(token).subscribe((value: any) => {
         this.authService.setUser({
+          id: value.users[0].localId,
           email: value.users[0].email
         });
       });
     }
 
-    this.authService.currentUser.subscribe(value => {
-      if (value !== null) {
-        this.email = value.email;
-      } else {
-        this.email = '';
-      }
-    });
+    this.user$ = this.authService.currentUser;
 
     this.todoService.contador
       .pipe(

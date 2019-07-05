@@ -8,4 +8,6 @@ export interface Todo {
     finished: boolean;
 
     date: string;
+
+    userId: string;
 }

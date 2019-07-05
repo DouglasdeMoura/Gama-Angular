@@ -1,44 +1,20 @@
-<div *ngIf="'' !== email">
-    Olá {{ email }}
+<div *ngIf="user$ | async; else deslogado">
+    <p>Olá {{ (user$ | async).email }}</p>
+
+    <a routerLink="/">Home</a> | 
+    <a routerLink="/todo">Todos</a> | 
+    <a routerLink="/todo/add">Adicionar Todo</a> | 
+    <a routerLink="/cep">CEP</a> | 
+    <button (click)="logout()">Sair</button>
 </div>
 
-
-<!--
-<app-contador></app-contador>
-
-<strong>App: {{ contador }}</strong>
-
-<app-contador-botoes></app-contador-botoes>
--->
+<ng-template #deslogado>
+    <a routerLink="/">Home</a> | 
+    <a routerLink="/cep">CEP</a> | 
+    <a routerLink="/auth/login">Entrar</a> | 
+    <a routerLink="/auth/register">Cadastro</a>
+</ng-template>
 
 <div>
-    <a routerLink="/">Home</a> | <a routerLink="/todos">Todos</a> | <a routerLink="/cep/04812227">CEP</a>
-    <ul>
-        <li>
-            <a routerLink="/">Início</a>
-        </li>
-        <li>        
-            <a routerLink="/todos">To Dos</a>
-        </li>
-        <li>
-            <a routerLink="/cep">CEP</a>
-        </li>
-        <li>
-            <a routerLink="/cep/04812227">CEP na URL</a>
-        </li>
-        <li>
-            <a routerLink="/todo/add">Add Todo</a>
-        </li>
-        <li>
-            <a routerLink="/auth/login">Login</a>
-        </li>
-        <li>
-            <a routerLink="/auth/register">Register</a>
-        </li>
-        <li>
-            <button (click)="logout()">Sair</button>
-        </li>
-    </ul>
+    <router-outlet></router-outlet>
 </div>
-
-<router-outlet></router-outlet>

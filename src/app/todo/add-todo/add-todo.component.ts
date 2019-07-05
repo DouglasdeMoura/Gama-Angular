@@ -3,6 +3,7 @@ import { Title } from '@angular/platform-browser';
 import { Todo } from 'src/typings/Todo';
 import { TodoService } from '../todo.service';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/auth/auth.service';
 
 @Component({
   selector: 'app-add-todo',
@@ -18,12 +19,16 @@ export class AddTodoComponent implements OnInit {
     title: '',
     description: '',
     finished: false,
-    date: ''
+    date: '',
+    userId: '',
   };
 
-  constructor(private todoService: TodoService, private router: Router) { }
+  constructor(private todoService: TodoService, private router: Router, private authService: AuthService) { }
 
   ngOnInit() {
+    this.authService.currentUser.subscribe(user => {
+      this.todo.userId = user.id;
+    });
   }
 
   enviarTodo() {
@@ -31,7 +36,7 @@ export class AddTodoComponent implements OnInit {
       .adicionarTodo(this.todo)
       .subscribe(() => {
         alert('To-do adicionado com sucesso');
-        this.router.navigateByUrl('/todos');
+        this.router.navigateByUrl('/todo');
       });
   }
 

@@ -7,11 +7,12 @@ import { ContadorBotoesComponent } from './contador-botoes/contador-botoes.compo
 import { RouterModule, Routes } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { AuthGuard } from './auth/auth.guard';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'auth', loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule) },
-  { path: 'todo', loadChildren: () => import('./todo/todo.module').then(m => m.TodoModule) },
+  { path: 'todo', canActivate: [AuthGuard], loadChildren: () => import('./todo/todo.module').then(m => m.TodoModule) },
   { path: 'cep', loadChildren: () => import('./cep/cep.module').then(m => m.CepModule) },
 ];
 

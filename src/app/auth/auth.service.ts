@@ -8,6 +8,7 @@ import { HttpClient } from '@angular/common/http';
 export class AuthService {
 
   private pUser = new BehaviorSubject(null);
+
   currentUser = this.pUser.asObservable();
 
   constructor(private httpClient: HttpClient) { }
