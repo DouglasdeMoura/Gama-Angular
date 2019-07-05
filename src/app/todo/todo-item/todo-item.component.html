@@ -6,4 +6,5 @@
         <strong>Finalizado:</strong> {{ data.finished | bool }}<br>
         <strong>Data:</strong> {{ data.date | date: 'dd/MM/yyyy' }}
     </p>
+    <a routerLink="/todo/{{ data.id }}" >Editar</a>
 </div>

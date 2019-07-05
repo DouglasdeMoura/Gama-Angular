@@ -18,6 +18,14 @@ export class TodoService {
     return this.httpClient.get<Todo[]>('http://localhost:3000/users/' + userId + '/todos');
   }
 
+  getTodo(id) {
+    return this.httpClient.get('http://localhost:3000/todos/' + id);
+  }
+ 
+  updateTodo(id, todo) {
+    return this.httpClient.put('http://localhost:3000/todos/' + id, todo);
+  }
+ 
   adicionarTodo(todo: Todo) {
     return this.httpClient
       .post('http://localhost:3000/todos', todo);

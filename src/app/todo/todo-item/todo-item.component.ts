@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Todo } from 'src/typings/Todo';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-todo-item',
@@ -10,9 +11,13 @@ export class TodoItemComponent implements OnInit {
 
   @Input() data: Todo;
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
+  }
+
+  editar() {
+    this.router.navigateByUrl('/todo/' + this.data.id);
   }
 
 }
