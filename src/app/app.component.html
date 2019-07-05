@@ -1,8 +1,15 @@
+<div *ngIf="'' !== email">
+    Olá {{ email }}
+</div>
+
+
+<!--
 <app-contador></app-contador>
 
 <strong>App: {{ contador }}</strong>
 
 <app-contador-botoes></app-contador-botoes>
+-->
 
 <div>
     <a routerLink="/">Home</a> | <a routerLink="/todos">Todos</a> | <a routerLink="/cep/04812227">CEP</a>
@@ -21,6 +28,15 @@
         </li>
         <li>
             <a routerLink="/todo/add">Add Todo</a>
+        </li>
+        <li>
+            <a routerLink="/auth/login">Login</a>
+        </li>
+        <li>
+            <a routerLink="/auth/register">Register</a>
+        </li>
+        <li>
+            <button (click)="logout()">Sair</button>
         </li>
     </ul>
 </div>
