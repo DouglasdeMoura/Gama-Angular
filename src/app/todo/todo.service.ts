@@ -14,8 +14,10 @@ export class TodoService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getTodos(userId): Observable<Todo[]> {
-    return this.httpClient.get<Todo[]>('http://localhost:3000/users/' + userId + '/todos');
+  //getTodos(userId): Observable<Todo[]> {
+    //return this.httpClient.get<Todo[]>('http://localhost:3000/users/' + userId + '/todos');
+  getTodos(userId) {
+    return this.httpClient.get('http://localhost:3000/users/' + userId + '/todos');
   }
 
   getTodo(id) {
