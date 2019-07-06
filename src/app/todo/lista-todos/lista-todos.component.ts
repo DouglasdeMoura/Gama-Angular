@@ -23,4 +23,12 @@ export class ListaTodosComponent implements OnInit {
     });
   }
 
+  onDeleteItem(id) {
+    console.log(id);
+    this.todoService.deleteTodo(id)
+      .subscribe(v => {
+        alert('To-do apagado com sucesso');
+      });
+  }
+
 }
